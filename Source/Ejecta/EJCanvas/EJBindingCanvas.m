@@ -598,6 +598,12 @@ EJ_BIND_FUNCTION( resetClip, ctx, argc, argv ) {
 	return NULL;
 }
 
+
+// added by finscn
+EJ_BIND_GET(canvas, ctx) {
+	return jsObject;
+}
+
 EJ_BIND_FUNCTION_NOT_IMPLEMENTED( createRadialGradient );
 EJ_BIND_FUNCTION_NOT_IMPLEMENTED( createLinearGradient );
 EJ_BIND_FUNCTION_NOT_IMPLEMENTED( createPattern );

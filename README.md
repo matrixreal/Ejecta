@@ -1,4 +1,7 @@
-# Ejecta Classic
+# Ejecta 
+
+This is a Classic ver. of Ejecta, which is based on  commit 70989a2d9ae36d554385a768d9668bd60f57e68b .
+
 
 Ejecta is a fast, open source JavaScript, Canvas & Audio implementation for iOS. Think of it as a Browser that can only display a Canvas element.
 
