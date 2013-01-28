@@ -10,6 +10,8 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
+		39885E3816B702F500E731F1 /* EJWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3616B702F500E731F1 /* EJWebView.m */; };
 		5B7B76761619DB9700691910 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7B76751619DB9700691910 /* CoreText.framework */; };
 		B6074FF315F8E41700D987F9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6074FF215F8E41600D987F9 /* GameKit.framework */; };
 		B607AB67132EA6C300D7C3EA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B607AB66132EA6C300D7C3EA /* OpenAL.framework */; };
@@ -73,6 +75,10 @@
 		1D6058910D05DD3D006BFB54 /* Ejecta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ejecta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
+		39885E3416B702F500E731F1 /* EJBindingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebView.m; sourceTree = "<group>"; };
+		39885E3516B702F500E731F1 /* EJWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJWebView.h; sourceTree = "<group>"; };
+		39885E3616B702F500E731F1 /* EJWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJWebView.m; sourceTree = "<group>"; };
 		5B7B76751619DB9700691910 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B6074FF215F8E41600D987F9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B607AB66132EA6C300D7C3EA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -213,6 +219,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				39885E3216B702F500E731F1 /* Extension */,
 				B68C5AEF132E6CD60015092E /* App */,
 				B64CE60E166682700087CF94 /* Source */,
 				B64CE683166682B10087CF94 /* Resources */,
@@ -242,6 +249,17 @@
 				B6AC4A051359E7A5003C4982 /* iAd.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39885E3216B702F500E731F1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				39885E3316B702F500E731F1 /* EJBindingWebView.h */,
+				39885E3416B702F500E731F1 /* EJBindingWebView.m */,
+				39885E3516B702F500E731F1 /* EJWebView.h */,
+				39885E3616B702F500E731F1 /* EJWebView.m */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		B64CE60E166682700087CF94 /* Source */ = {
@@ -508,6 +526,8 @@
 				B64CE681166682700087CF94 /* lodepng.c in Sources */,
 				B64CE682166682700087CF94 /* main.m in Sources */,
 				B6F9AFC0169F81D400ABD91A /* EJBindingLifecycle.m in Sources */,
+				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
+				39885E3816B702F500E731F1 /* EJWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
