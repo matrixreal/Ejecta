@@ -4,7 +4,7 @@
 @implementation EJBindingWebView
 
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
-    
+
     EJApp *app=[EJApp instance];
     
     CGSize screen = app.view.bounds.size;
@@ -20,6 +20,13 @@
     //[webView eval: @"console.log('test eval')"];
     
     return self;
+
+}
+
+// for the New Ejecta 
+- (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
+
+    return [self initWithContext:ctx object:nil argc:argc argv:argv];
 
 }
 
