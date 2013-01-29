@@ -26,7 +26,7 @@
 // for the New Ejecta 
 - (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
 
-    return [self initWithContext:ctx object:nil argc:argc argv:argv];
+    return [self initWithContext:ctxp object:nil argc:argc argv:argv];
 
 }
 
