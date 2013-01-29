@@ -2,7 +2,6 @@
 #import "EJWebView.h"
 #import "EJApp.h"
 
-
 @implementation EJWebView
 
 @synthesize loaded;
@@ -71,6 +70,20 @@
         [NSThread sleepForTimeInterval:10.0f];
     }
     return YES;
+}
+
+-(NSString *) dictionaryToJSONString:(NSDictionary *)dictionary {
+    NSError *error;
+    NSString *jsonString;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:&error];
+    
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+    return jsonString;
 }
 
 - (void)dealloc {

@@ -10,5 +10,7 @@
 
 - (BOOL)load:(NSString *)path;
 - (JSValueRef)evalEjectaJS:(NSString *)script;
+- (NSString *) dictionaryToJSONString:(NSDictionary *)dictionary;
+
 
 @end

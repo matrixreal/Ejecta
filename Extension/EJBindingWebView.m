@@ -5,8 +5,6 @@
 
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
     
-    NSLog(@"webViewBounds : %@",@"create a webview");
-    
     EJApp *app=[EJApp instance];
     
     CGSize screen = app.view.bounds.size;
@@ -19,7 +17,7 @@
     [app.view addSubview: webView];
     
     
-    //[webView eval: @"console.log(1)"];
+    //[webView eval: @"console.log('test eval')"];
     
     return self;
 
