@@ -56,15 +56,16 @@
 	[[EJApp instance].glContext renderbufferStorage:GL_RENDERBUFFER fromDrawable:(CAEAGLLayer *)glview.layer];
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, viewRenderBuffer);
 	
+        
+//	glDisable(GL_CULL_FACE);
+//	glDisable(GL_DITHER);
+	
+//	glEnable(GL_BLEND);
+//	glDepthFunc(GL_ALWAYS);
 
-	glDisable(GL_CULL_FACE);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_DITHER);
-	
-	glEnable(GL_BLEND);
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_ALWAYS);
-	
+//	glDisable(GL_LIGHTING);
+//	glEnable(GL_DEPTH_TEST);
+    
 	[self prepare];
 	
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);

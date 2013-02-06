@@ -97,7 +97,8 @@ EJ_BIND_SET(miterLimit, ctx, value) {
 
 EJ_BIND_GET(font, ctx) {
 	UIFont * font = renderingContext.state->font;
-	NSString * name = [NSString stringWithFormat:@"%dpt %@", (int)font.pointSize, font.fontName];
+//	NSString * name = [NSString stringWithFormat:@"%dpt %@", (int)font.pointSize, font.fontName];
+    NSString * name = [NSString stringWithFormat:@"%dpx %@", (int)font.pointSize, font.fontName];
 	return NSStringToJSValue(ctx, name);
 }
 
@@ -109,9 +110,16 @@ EJ_BIND_SET(font, ctx, value) {
 	// Yeah, oldschool!
 	float size = 0;
 	char name[64];
-	sscanf( string, "%fp%*[tx\"' ]%63[^\"']", &size, name); // matches: 10.5p[tx] helvetica
-	UIFont * newFont = [UIFont fontWithName:[NSString stringWithUTF8String:name] size:size];
+//	sscanf( string, "%fp%*[tx\"' ]%63[^\"']", &size, name); // matches: 10.5p[tx] helvetica
+//	UIFont * newFont = [UIFont fontWithName:[NSString stringWithUTF8String:name] size:size];
 	
+    char ptx;
+    sscanf( string, "%fp%1[tx]%*[\"' ]%63[^\"']", &size, &ptx, name); // matches: 10.5p[tx] 'some font'
+    if( ptx == 't' ) { // pt or px?
+        size = ceilf(size*4.0/3.0);
+    }
+    UIFont * newFont = [UIFont fontWithName:[NSString stringWithUTF8String:name] size:size];
+    
 	if( newFont ) {
 		renderingContext.font = newFont;
 	}
@@ -603,6 +611,76 @@ EJ_BIND_FUNCTION( resetClip, ctx, argc, argv ) {
 EJ_BIND_GET(canvas, ctx) {
 	return jsObject;
 }
+
+EJ_BIND_FUNCTION(drawImageBatch, ctx, argc, argv) {
+    
+    ejectaInstance.currentRenderingContext = renderingContext;
+    
+    for (int i=0;i<argc;){
+        
+        NSObject<EJDrawable> * drawable =
+        (NSObject<EJDrawable> *)JSObjectGetPrivate((JSObjectRef)argv[i++]);
+        
+        EJTexture * image = drawable.texture;
+        float scale = image.contentScale;
+        
+        short sx = 0, sy = 0, sw = 0, sh = 0;
+        float dx = 0, dy = 0, dw = sw, dh = sh;
+        
+		sx = JSValueToNumberFast(ctx, argv[i++]) * scale;
+		sy = JSValueToNumberFast(ctx, argv[i++]) * scale;
+		sw = JSValueToNumberFast(ctx, argv[i++]) * scale;
+		sh = JSValueToNumberFast(ctx, argv[i++]) * scale;
+		
+		dx = JSValueToNumberFast(ctx, argv[i++]);
+		dy = JSValueToNumberFast(ctx, argv[i++]);
+		dw = JSValueToNumberFast(ctx, argv[i++]);
+		dh = JSValueToNumberFast(ctx, argv[i++]);
+        
+        [renderingContext drawImage:image sx:sx sy:sy sw:sw sh:sh dx:dx dy:dy dw:dw dh:dh];
+        
+    }
+    
+    return NULL;
+}
+
+EJ_BIND_FUNCTION( strokeLines, ctx, argc, argv ) {
+    
+    float x=0,y=0;
+    for (int i=0;i<argc;){
+        
+        x = JSValueToNumberFast(ctx, argv[i++]);
+        y = JSValueToNumberFast(ctx, argv[i++]);
+        [renderingContext moveToX:x y:y];
+        
+        x = JSValueToNumberFast(ctx, argv[i++]);
+        y = JSValueToNumberFast(ctx, argv[i++]);
+        [renderingContext lineToX:x y:y];
+        
+    }
+    
+	return NULL;
+}
+
+
+EJ_BIND_FUNCTION( strokePolyline, ctx, argc, argv ) {
+    
+    float
+        x = JSValueToNumberFast(ctx, argv[0]),
+        y = JSValueToNumberFast(ctx, argv[1]);
+    [renderingContext moveToX:x y:y];
+    
+    for (int i=2;i<argc;){
+        x = JSValueToNumberFast(ctx, argv[i++]);
+        y = JSValueToNumberFast(ctx, argv[i++]);
+        [renderingContext lineToX:x y:y];
+        
+    }
+    
+	return NULL;
+}
+
+
 
 EJ_BIND_FUNCTION_NOT_IMPLEMENTED( createRadialGradient );
 EJ_BIND_FUNCTION_NOT_IMPLEMENTED( createLinearGradient );

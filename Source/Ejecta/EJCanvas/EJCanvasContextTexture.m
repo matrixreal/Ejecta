@@ -7,7 +7,7 @@
 	texture = [[EJTexture alloc] initWithWidth:width height:height];
 	bufferWidth = texture.realWidth;
 	bufferHeight = texture.realHeight;
-	
+   
 	// This creates the frame- and renderbuffers
 	[super create];
 	

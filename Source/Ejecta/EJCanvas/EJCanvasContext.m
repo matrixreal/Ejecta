@@ -81,6 +81,15 @@ EJVertex CanvasVertexBuffer[EJ_CANVAS_VERTEX_BUFFER_SIZE];
 	
 	glGenRenderbuffers(1, &viewRenderBuffer);
 	glBindRenderbuffer(GL_RENDERBUFFER, viewRenderBuffer);
+    
+    glDisable(GL_CULL_FACE);
+    glDisable(GL_DITHER);
+    glEnable(GL_BLEND);
+    glDepthFunc(GL_ALWAYS);
+
+    glDisable(GL_LIGHTING);
+    glEnable(GL_DEPTH_TEST);
+    
 }
 
 - (void)createStencilBufferOnce {
@@ -504,7 +513,7 @@ EJVertex CanvasVertexBuffer[EJ_CANVAS_VERTEX_BUFFER_SIZE];
 	[state->clipPath release];
 	state->clipPath = nil;
 	
-	state->clipPath = [path copy];
+    state->clipPath = path.copy;
 	[state->clipPath drawPolygonsToContext:self target:kEJPathPolygonTargetDepth];
 }
 
