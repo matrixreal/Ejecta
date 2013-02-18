@@ -39,6 +39,74 @@ static int firstCanvasInstance = YES;
 	[super dealloc];
 }
 
+
+EJ_BIND_GET(width, ctx) {
+	return JSValueMakeNumber(ctx, width);
+}
+
+EJ_BIND_SET(width, ctx, value) {
+	short newWidth = JSValueToNumberFast(ctx, value);
+	if( renderingContext && newWidth != width ) {
+		NSLog(@"Warning: rendering context already created; can't change width");
+		return;
+	}
+	width = newWidth;
+}
+
+EJ_BIND_GET(height, ctx) {
+	return JSValueMakeNumber(ctx, height);
+}
+
+EJ_BIND_SET(height, ctx, value) {
+	short newHeight = JSValueToNumberFast(ctx, value);
+	if( renderingContext && newHeight != height ) {
+		NSLog(@"Warning: rendering context already created; can't change height");
+		return;
+	}
+	height = newHeight;
+}
+
+EJ_BIND_GET(offsetLeft, ctx) {
+	return JSValueMakeNumber(ctx, 0);
+}
+
+EJ_BIND_GET(offsetTop, ctx) {
+	return JSValueMakeNumber(ctx, 0);
+}
+
+
+
+EJ_BIND_SET(retinaResolutionEnabled, ctx, value) {
+	useRetinaResolution = JSValueToBoolean(ctx, value);
+}
+
+EJ_BIND_GET(retinaResolutionEnabled, ctx) {
+	return JSValueMakeBoolean(ctx, useRetinaResolution);
+}
+
+
+EJ_BIND_SET(MSAAEnabled, ctx, value) {
+	msaaEnabled = JSValueToBoolean(ctx, value);
+}
+
+EJ_BIND_GET(MSAAEnabled, ctx) {
+	return JSValueMakeBoolean(ctx, msaaEnabled);
+}
+
+EJ_BIND_SET(MSAASamples, ctx, value) {
+	int samples = JSValueToNumberFast(ctx, value);
+	if( samples == 2 || samples == 4 ) {
+		msaaSamples	= samples;
+	}
+}
+
+EJ_BIND_GET(MSAASamples, ctx) {
+	return JSValueMakeNumber(ctx, msaaSamples);
+}
+
+EJ_BIND_ENUM(scalingMode, EJScalingModeNames, scalingMode);
+
+
 - (EJTexture *)texture {
 	if( [renderingContext isKindOfClass:[EJCanvasContextTexture class]] ) {
 		return ((EJCanvasContextTexture *)renderingContext).texture;
@@ -48,12 +116,34 @@ static int firstCanvasInstance = YES;
 	}
 }
 
+////////////////////////////
+//
+//  context
+//
+///////////////////////////
+
+
+
+EJ_BIND_SET(imageSmoothingEnabled, ctx, value) {
+	ejectaInstance.currentRenderingContext = renderingContext;
+	renderingContext.imageSmoothingEnabled = JSValueToBoolean(ctx, value);
+}
+
+EJ_BIND_GET(imageSmoothingEnabled, ctx) {
+	return JSValueMakeBoolean(ctx, renderingContext.imageSmoothingEnabled);
+}
+
+EJ_BIND_GET(backingStorePixelRatio, ctx) {
+	return JSValueMakeNumber(ctx, renderingContext.backingStoreRatio);
+}
+
+
+
 EJ_BIND_ENUM(globalCompositeOperation, EJCompositeOperationNames, renderingContext.globalCompositeOperation);
 EJ_BIND_ENUM(lineCap, EJLineCapNames, renderingContext.state->lineCap);
 EJ_BIND_ENUM(lineJoin, EJLineJoinNames, renderingContext.state->lineJoin);
 EJ_BIND_ENUM(textAlign, EJTextAlignNames, renderingContext.state->textAlign);
 EJ_BIND_ENUM(textBaseline, EJTextBaselineNames, renderingContext.state->textBaseline);
-EJ_BIND_ENUM(scalingMode, EJScalingModeNames, scalingMode);
 
 EJ_BIND_GET(fillStyle, ctx ) {
 	return ColorRGBAToJSValue(ctx, renderingContext.state->fillColor);
@@ -97,7 +187,7 @@ EJ_BIND_SET(miterLimit, ctx, value) {
 
 EJ_BIND_GET(font, ctx) {
 	UIFont * font = renderingContext.state->font;
-//	NSString * name = [NSString stringWithFormat:@"%dpt %@", (int)font.pointSize, font.fontName];
+    //	NSString * name = [NSString stringWithFormat:@"%dpt %@", (int)font.pointSize, font.fontName];
     NSString * name = [NSString stringWithFormat:@"%dpx %@", (int)font.pointSize, font.fontName];
 	return NSStringToJSValue(ctx, name);
 }
@@ -110,8 +200,8 @@ EJ_BIND_SET(font, ctx, value) {
 	// Yeah, oldschool!
 	float size = 0;
 	char name[64];
-//	sscanf( string, "%fp%*[tx\"' ]%63[^\"']", &size, name); // matches: 10.5p[tx] helvetica
-//	UIFont * newFont = [UIFont fontWithName:[NSString stringWithUTF8String:name] size:size];
+    //	sscanf( string, "%fp%*[tx\"' ]%63[^\"']", &size, name); // matches: 10.5p[tx] helvetica
+    //	UIFont * newFont = [UIFont fontWithName:[NSString stringWithUTF8String:name] size:size];
 	
     char ptx;
     sscanf( string, "%fp%1[tx]%*[\"' ]%63[^\"']", &size, &ptx, name); // matches: 10.5p[tx] 'some font'
@@ -126,82 +216,6 @@ EJ_BIND_SET(font, ctx, value) {
 	
 	JSStringRelease(jsString);
 }
-
-EJ_BIND_GET(width, ctx) {
-	return JSValueMakeNumber(ctx, width);
-}
-
-EJ_BIND_SET(width, ctx, value) {
-	short newWidth = JSValueToNumberFast(ctx, value);
-	if( renderingContext && newWidth != width ) {
-		NSLog(@"Warning: rendering context already created; can't change width");
-		return;
-	}
-	width = newWidth;
-}
-
-EJ_BIND_GET(height, ctx) {
-	return JSValueMakeNumber(ctx, height);
-}
-
-EJ_BIND_SET(height, ctx, value) {
-	short newHeight = JSValueToNumberFast(ctx, value);
-	if( renderingContext && newHeight != height ) {
-		NSLog(@"Warning: rendering context already created; can't change height");
-		return;
-	}
-	height = newHeight;
-}
-
-EJ_BIND_GET(offsetLeft, ctx) {
-	return JSValueMakeNumber(ctx, 0);
-}
-
-EJ_BIND_GET(offsetTop, ctx) {
-	return JSValueMakeNumber(ctx, 0);
-}
-
-EJ_BIND_SET(retinaResolutionEnabled, ctx, value) {
-	useRetinaResolution = JSValueToBoolean(ctx, value);
-}
-
-EJ_BIND_GET(retinaResolutionEnabled, ctx) {
-	return JSValueMakeBoolean(ctx, useRetinaResolution);
-}
-
-EJ_BIND_SET(imageSmoothingEnabled, ctx, value) {
-	ejectaInstance.currentRenderingContext = renderingContext;
-	renderingContext.imageSmoothingEnabled = JSValueToBoolean(ctx, value);
-}
-
-EJ_BIND_GET(imageSmoothingEnabled, ctx) {
-	return JSValueMakeBoolean(ctx, renderingContext.imageSmoothingEnabled);
-}
-
-EJ_BIND_GET(backingStorePixelRatio, ctx) {
-	return JSValueMakeNumber(ctx, renderingContext.backingStoreRatio);
-}
-
-EJ_BIND_SET(MSAAEnabled, ctx, value) {
-	msaaEnabled = JSValueToBoolean(ctx, value);
-}
-
-EJ_BIND_GET(MSAAEnabled, ctx) {
-	return JSValueMakeBoolean(ctx, msaaEnabled);
-}
-
-EJ_BIND_SET(MSAASamples, ctx, value) {
-	int samples = JSValueToNumberFast(ctx, value);
-	if( samples == 2 || samples == 4 ) {
-		msaaSamples	= samples;
-	}
-}
-
-EJ_BIND_GET(MSAASamples, ctx) {
-	return JSValueMakeNumber(ctx, msaaSamples);
-}
-
-
 
 EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	if( argc < 1 || ![JSValueToNSString(ctx, argv[0]) isEqualToString:@"2d"] ) { 
@@ -233,6 +247,8 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	// returns itself
 	return jsObject;
 }
+
+
 
 EJ_BIND_FUNCTION(save, ctx, argc, argv) {
 	[renderingContext save];
