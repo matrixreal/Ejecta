@@ -10,6 +10,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
 		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
 		39885E3816B702F500E731F1 /* EJWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3616B702F500E731F1 /* EJWebView.m */; };
 		5B7B76761619DB9700691910 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7B76751619DB9700691910 /* CoreText.framework */; };
@@ -75,6 +76,8 @@
 		1D6058910D05DD3D006BFB54 /* Ejecta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ejecta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext.h; sourceTree = "<group>"; };
+		3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext.m; sourceTree = "<group>"; };
 		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
 		39885E3416B702F500E731F1 /* EJBindingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebView.m; sourceTree = "<group>"; };
 		39885E3516B702F500E731F1 /* EJWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJWebView.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 		B64CE624166682700087CF94 /* EJCanvas */ = {
 			isa = PBXGroup;
 			children = (
+				3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */,
+				3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */,
 				B64CE627166682700087CF94 /* EJBindingCanvas.h */,
 				B64CE628166682700087CF94 /* EJBindingCanvas.m */,
 				B64CE629166682700087CF94 /* EJBindingImage.h */,
@@ -528,6 +533,7 @@
 				B6F9AFC0169F81D400ABD91A /* EJBindingLifecycle.m in Sources */,
 				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
 				39885E3816B702F500E731F1 /* EJWebView.m in Sources */,
+				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -103,4 +103,21 @@ NSData * NSDataFromString( NSString *str ) {
 	return class;
 }
 
+void EJBindingBaseFinalize(JSObjectRef object) {
+	id instance = (id)JSObjectGetPrivate(object);
+	[instance release];
+}
+
++ (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx instance:(EJBindingBase *)instance
+{
+    // Create new JS object
+    JSClassRef jsClass = [[EJApp instance] getJSClassForClass:self];
+    JSObjectRef obj = JSObjectMake( ctx, jsClass, NULL );
+    // The JSObject retains the instance; it will be released by EJBindingBaseFinalize
+    JSObjectSetPrivate( obj, (void *)[instance retain] );
+	// Attach the native instance to the js object
+    //	JSObjectSetPrivate( obj, (void *)instance );
+	return obj;
+}
+
 @end
