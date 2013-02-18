@@ -334,3 +334,10 @@ void JSObjectToByteArray( JSContextRef ctx, JSObjectRef array, unsigned char * b
 	}
 }
 
+void JSValueUnprotectSafe( JSContextRef ctx, JSValueRef v ) {
+    if( ctx && v ) {
+        JSValueUnprotect(ctx, v);
+    }
+}
+
+
