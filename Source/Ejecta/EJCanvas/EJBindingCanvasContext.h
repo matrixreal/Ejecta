@@ -1,9 +1,5 @@
 #import <Foundation/Foundation.h>
 #import "EJBindingBase.h"
-#import "EJCanvasContextTexture.h"
-#import "EJCanvasContextScreen.h"
-#import "EJTexture.h"
-#import "EJDrawable.h"
 #import "EJCanvasContext.h"
 
 static const char * EJLineCapNames[] = {

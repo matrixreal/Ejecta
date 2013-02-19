@@ -1,10 +1,8 @@
 #import <Foundation/Foundation.h>
 #import "EJBindingBase.h"
-#import "EJCanvasContextTexture.h"
-#import "EJCanvasContextScreen.h"
 #import "EJTexture.h"
 #import "EJDrawable.h"
-
+#import "EJCanvasContextScreen.h"
 
 static const char * EJScalingModeNames[] = {
 	[kEJScalingModeNone] = "none",
