@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "EJBindingBase.h"
 #import "EJCanvasContext.h"
+#import "EJCanvasContextTexture.h"
 
 static const char * EJLineCapNames[] = {
 	[kEJLineCapButt] = "butt",

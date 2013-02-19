@@ -1,9 +1,8 @@
 #import "EJBindingCanvasContext.h"
 #import "EJBindingImageData.h"
-#import "EJCanvasContextTexture.h"
-#import "EJCanvasContextScreen.h"
 #import "EJTexture.h"
 #import "EJDrawable.h"
+
 
 @implementation EJBindingCanvasContext
 
