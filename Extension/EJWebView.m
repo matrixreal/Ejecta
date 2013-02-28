@@ -9,6 +9,7 @@
 - (id)initWithFrame:(CGRect)frame{
     [super initWithFrame:frame];
     
+    app=[EJApp instance];
     self.opaque=NO;
     self.backgroundColor=[UIColor clearColor];
     self.delegate=self;
@@ -19,12 +20,16 @@
 
 -(JSValueRef)evalEjectaJS:(NSString *)script {
     
-    JSGlobalContextRef jsGlobalContext=[[EJApp instance] jsGlobalContext];
+    NSLog(@"scriptJS : %@",script);
+    
+    JSGlobalContextRef jsGlobalContext=[app jsGlobalContext];
     
     JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
     JSValueRef exception = NULL;
+    
+    
 	JSValueRef result=JSEvaluateScript( jsGlobalContext, scriptJS, NULL, NULL, 0, &exception );
-	[[EJApp instance] logException:exception ctx:jsGlobalContext];
+	[app logException:exception ctx:jsGlobalContext];
     
     // JSType type=JSValueGetType(jsGlobalContext,result);
     
@@ -35,14 +40,16 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     loaded=YES;
+      NSString *script=@"window._webviewId=Date.now();window._webviewHasLoaded=true; ";
+   [webView stringByEvaluatingJavaScriptFromString:script];
+    
 }
 
 - (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *url = request.URL;
     NSString *urlString = url.absoluteString;
-    NSRange range = [urlString rangeOfString:@"exec://"];
-    
+    NSRange range = [urlString rangeOfString:@"exec://"];    
     if ( range.length > 0 && range.location==0 ) {
         NSString *script = [urlString substringFromIndex:range.length];
 //        NSLog(@"script : %@",script);
@@ -61,13 +68,19 @@
 
 - (BOOL)load:(NSString *)path {
 	
-    NSString* startFilePath = [[EJApp instance] pathForResource: path];
-    NSURL* appURL = [NSURL fileURLWithPath:startFilePath];
+    NSURL* appURL;
+    	
+    if ([path hasPrefix:@"http:"] || [path hasPrefix:@"https:"]){
+        appURL=[NSURL URLWithString:path];
+    }else{
+        NSString* startFilePath = [app pathForResource: path];
+        appURL = [NSURL fileURLWithPath:startFilePath];
+    }
     NSURLRequest *appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0];
     
     [self loadRequest:appReq];
     while (self.loading){
-        [NSThread sleepForTimeInterval:10.0f];
+        [NSThread sleepForTimeInterval:9.0f];
     }
     return YES;
 }

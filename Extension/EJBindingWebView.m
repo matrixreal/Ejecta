@@ -15,8 +15,7 @@
     CGRect webViewBounds=CGRectMake(left,top,width,height);
     webView=[[EJWebView alloc] initWithFrame:webViewBounds];
     [app.view addSubview: webView];
-    
-    
+     
     //[webView eval: @"console.log('test eval')"];
     
     return self;
@@ -33,8 +32,7 @@
 
 
 - (void)load {
-    NSLog(@"webview : %@",src);
-	[webView load:src];
+   [webView load:src];
 }
 
 
@@ -59,6 +57,8 @@
 
 EJ_BIND_FUNCTION( eval, ctx, argc, argv ) {
     NSString *script = JSValueToNSString(ctx, argv[0]);
+    
+    NSLog(@"script : %@", script);
     NSString *result = [self eval:script];
     
     JSStringRef _result = JSStringCreateWithUTF8CString( [result UTF8String] );
@@ -67,10 +67,18 @@ EJ_BIND_FUNCTION( eval, ctx, argc, argv ) {
    
 }
 
+EJ_BIND_FUNCTION( isLoaded, ctx, argc, argv ) {
+    if ([[self eval:@"document.readyState==='complete'"] isEqualToString:@"true"]){
+       return JSValueMakeBoolean(ctx, true);
+    }
+    return JSValueMakeBoolean(ctx, false);
+}
+
 EJ_BIND_FUNCTION( reload, ctx, argc, argv ) {
     [self reload];
     return NULL;
 }
+
 
 EJ_BIND_GET(loading, ctx) {
 	return JSValueMakeBoolean(ctx, loading);
@@ -138,5 +146,6 @@ EJ_BIND_SET(src, ctx, value) {
     }
     [self load];
 }
+
 
 @end

@@ -2,7 +2,8 @@
 #import "EJBindingBase.h"
 #import "EJWebView.h"
 
-@interface EJBindingWebView: EJBindingBase {
+
+@interface EJBindingWebView : EJBindingBase  {
     
     short width, height;
     short left, top;

@@ -1,9 +1,10 @@
 
 #import <UIKit/UIKit.h>
 #import "JavaScriptCore/JavaScriptCore.h"
+#import "EJApp.h"
 
 @interface EJWebView : UIWebView<UIWebViewDelegate> {
-	
+	EJApp *app;
 }
 
 @property (nonatomic,assign) BOOL loaded;
