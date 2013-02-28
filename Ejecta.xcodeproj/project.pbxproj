@@ -11,6 +11,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
+		396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 396A661016E0104C00E752D1 /* EJBindingWebSocket.m */; };
+		396A661716E0106800E752D1 /* EJWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 396A661616E0106800E752D1 /* EJWebSocket.m */; };
 		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
 		39885E3816B702F500E731F1 /* EJWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3616B702F500E731F1 /* EJWebView.m */; };
 		5B7B76761619DB9700691910 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7B76751619DB9700691910 /* CoreText.framework */; };
@@ -71,6 +73,44 @@
 		B6F9AFC0169F81D400ABD91A /* EJBindingLifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AFBF169F81D400ABD91A /* EJBindingLifecycle.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		396A660516E00C7F00E752D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F6B2082D1450F597009315AF;
+			remoteInfo = SocketRocket;
+		};
+		396A660716E00C7F00E752D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F668C880153E91210044DBAC;
+			remoteInfo = SocketRocketOSX;
+		};
+		396A660916E00C7F00E752D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F6BDA802145900D200FE3253;
+			remoteInfo = SRWebSocketTests;
+		};
+		396A660B16E00C7F00E752D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F62417E314D52F3C003CE997;
+			remoteInfo = TestChat;
+		};
+		396A660D16E00C8800E752D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F6B2082C1450F597009315AF;
+			remoteInfo = SocketRocket;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Ejecta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ejecta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +118,11 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext.h; sourceTree = "<group>"; };
 		3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext.m; sourceTree = "<group>"; };
+		396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SocketRocket.xcodeproj; path = SocketRocket/SocketRocket.xcodeproj; sourceTree = "<group>"; };
+		396A660F16E0104C00E752D1 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
+		396A661016E0104C00E752D1 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
+		396A661516E0106800E752D1 /* EJWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJWebSocket.h; sourceTree = "<group>"; };
+		396A661616E0106800E752D1 /* EJWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJWebSocket.m; sourceTree = "<group>"; };
 		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
 		39885E3416B702F500E731F1 /* EJBindingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebView.m; sourceTree = "<group>"; };
 		39885E3516B702F500E731F1 /* EJWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJWebView.h; sourceTree = "<group>"; };
@@ -254,13 +299,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		396A65FF16E00C7F00E752D1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				396A660616E00C7F00E752D1 /* libSocketRocket.a */,
+				396A660816E00C7F00E752D1 /* SocketRocket.framework */,
+				396A660A16E00C7F00E752D1 /* SRWebSocketTests.octest */,
+				396A660C16E00C7F00E752D1 /* TestChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		39885E3216B702F500E731F1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */,
 				39885E3316B702F500E731F1 /* EJBindingWebView.h */,
 				39885E3416B702F500E731F1 /* EJBindingWebView.m */,
 				39885E3516B702F500E731F1 /* EJWebView.h */,
 				39885E3616B702F500E731F1 /* EJWebView.m */,
+				396A660F16E0104C00E752D1 /* EJBindingWebSocket.h */,
+				396A661016E0104C00E752D1 /* EJBindingWebSocket.m */,
+				396A661516E0106800E752D1 /* EJWebSocket.h */,
+				396A661616E0106800E752D1 /* EJWebSocket.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -439,6 +500,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				396A660E16E00C8800E752D1 /* PBXTargetDependency */,
 			);
 			name = Ejecta;
 			productName = iOSImpact;
@@ -462,15 +524,53 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 396A65FF16E00C7F00E752D1 /* Products */;
+					ProjectRef = 396A65FE16E00C7F00E752D1 /* SocketRocket.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Ejecta */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		396A660616E00C7F00E752D1 /* libSocketRocket.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSocketRocket.a;
+			remoteRef = 396A660516E00C7F00E752D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		396A660816E00C7F00E752D1 /* SocketRocket.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SocketRocket.framework;
+			remoteRef = 396A660716E00C7F00E752D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		396A660A16E00C7F00E752D1 /* SRWebSocketTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SRWebSocketTests.octest;
+			remoteRef = 396A660916E00C7F00E752D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		396A660C16E00C7F00E752D1 /* TestChat.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = TestChat.app;
+			remoteRef = 396A660B16E00C7F00E752D1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -534,10 +634,20 @@
 				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
 				39885E3816B702F500E731F1 /* EJWebView.m in Sources */,
 				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
+				396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */,
+				396A661716E0106800E752D1 /* EJWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		396A660E16E00C8800E752D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SocketRocket;
+			targetProxy = 396A660D16E00C8800E752D1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -550,12 +660,22 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}",
+					"${SOURCE_ROOT}/Source/lib",
+					"${SOURCE_ROOT}/Extension/SocketRocket",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Source/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-fobjc-arc",
 				);
 				PRODUCT_NAME = Ejecta;
 				SDKROOT = iphoneos;
@@ -571,12 +691,22 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				HEADER_SEARCH_PATHS = (
+					"${SOURCE_ROOT}",
+					"${SOURCE_ROOT}/Source/lib",
+					"${SOURCE_ROOT}/Extension/SocketRocket",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Source/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-fobjc-arc",
 				);
 				PRODUCT_NAME = Ejecta;
 				SDKROOT = iphoneos;
@@ -598,10 +728,16 @@
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
 					"${SOURCE_ROOT}/Source/lib",
+					"${SOURCE_ROOT}/Extension/SocketRocket",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DDEBUG";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-fobjc-arc",
+				);
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv6 armv7";
@@ -620,10 +756,16 @@
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
 					"${SOURCE_ROOT}/Source/lib",
+					"${SOURCE_ROOT}/Extension/SocketRocket",
 				);
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+					"-fobjc-arc",
+				);
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;

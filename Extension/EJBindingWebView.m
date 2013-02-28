@@ -1,11 +1,12 @@
+
 #import "EJBindingWebView.h"
 
 
 @implementation EJBindingWebView
 
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
-
-    EJApp *app=[EJApp instance];
+    
+    app=[EJApp instance];
     
     CGSize screen = app.view.bounds.size;
     width = screen.width;
@@ -15,24 +16,24 @@
     CGRect webViewBounds=CGRectMake(left,top,width,height);
     webView=[[EJWebView alloc] initWithFrame:webViewBounds];
     [app.view addSubview: webView];
-     
+    
     //[webView eval: @"console.log('test eval')"];
     
     return self;
-
+    
 }
 
-// for the New Ejecta 
+// for the New Ejecta
 - (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
-
+    
     return [self initWithContext:ctxp object:nil argc:argc argv:argv];
-
+    
 }
 
 
 
 - (void)load {
-   [webView load:src];
+    [webView load:src];
 }
 
 
@@ -48,7 +49,7 @@
 }
 
 - (void)dealloc {
-	
+	// TODO 
     [src release];
     [webView release];
 	[super dealloc];
@@ -62,14 +63,14 @@ EJ_BIND_FUNCTION( eval, ctx, argc, argv ) {
     NSString *result = [self eval:script];
     
     JSStringRef _result = JSStringCreateWithUTF8CString( [result UTF8String] );
-//	JSStringRelease(_result);
+    //	JSStringRelease(_result);
     return JSValueMakeString(ctx, _result);
-   
+    
 }
 
 EJ_BIND_FUNCTION( isLoaded, ctx, argc, argv ) {
     if ([[self eval:@"document.readyState==='complete'"] isEqualToString:@"true"]){
-       return JSValueMakeBoolean(ctx, true);
+        return JSValueMakeBoolean(ctx, true);
     }
     return JSValueMakeBoolean(ctx, false);
 }
@@ -131,7 +132,7 @@ EJ_BIND_SET(src, ctx, value) {
     if( loading ) { return; }
 	
 	NSString * newSrc = JSValueToNSString( ctx, value );
-		
+    
 	// Release the old path and texture?
 	if( src ) {
 		[src release];

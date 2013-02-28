@@ -10,6 +10,7 @@
     NSString *src;
     BOOL loading;
     EJWebView *webView;
+    EJApp *app;
     
 }
 
