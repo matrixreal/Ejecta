@@ -16,6 +16,7 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+SocketRocket/*
 
 # Ignoring App folder for
 # ease of implementation
