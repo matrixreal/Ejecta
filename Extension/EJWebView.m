@@ -69,14 +69,20 @@
 - (BOOL)load:(NSString *)path {
 	
     NSURL* appURL;
-    	
+    
     if ([path hasPrefix:@"http:"] || [path hasPrefix:@"https:"]){
         appURL=[NSURL URLWithString:path];
+        NSLog(@"webview load remote url : %@",appURL);
     }else{
         NSString* startFilePath = [app pathForResource: path];
         appURL = [NSURL fileURLWithPath:startFilePath];
+        NSLog(@"webview load local url : %@",appURL);
     }
-    NSURLRequest *appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0];
+    
+
+    
+    NSURLRequest *appReq = [NSURLRequest requestWithURL:appURL];
+//     NSURLRequest *appReq = [NSURLRequest requestWithURL:appURL cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:0.0];
     
     [self loadRequest:appReq];
     while (self.loading){

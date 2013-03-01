@@ -11,6 +11,8 @@
     CGSize screen = app.view.bounds.size;
     width = screen.width;
     height = screen.height;
+    NSLog(@"size %d %d",width,height);
+    
     left = 0;
     top =0;
     CGRect webViewBounds=CGRectMake(left,top,width,height);
