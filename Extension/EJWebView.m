@@ -22,7 +22,7 @@
 
 -(JSValueRef)evalScriptInEjecta:(NSString *)script {
     
-    NSLog(@"scriptJS : %@",script);
+    NSLog(@"script : %@",script);
     
     JSGlobalContextRef jsGlobalContext=[app jsGlobalContext];
     
@@ -65,7 +65,6 @@
 //        NSLog(@"url parameterString: %@",[url parameterString]);
         
         NSString *script = [[url query] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSLog(@"script : %@",script);
         [self evalScriptInEjecta:script];
         return NO;
     } else {
