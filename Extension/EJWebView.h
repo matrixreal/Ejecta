@@ -10,7 +10,7 @@
 @property (nonatomic,assign) BOOL loaded;
 
 - (BOOL)load:(NSString *)path;
-- (JSValueRef)evalEjectaJS:(NSString *)script;
+- (JSValueRef)evalScriptInEjecta:(NSString *)script;
 - (NSString *) dictionaryToJSONString:(NSDictionary *)dictionary;
 
 

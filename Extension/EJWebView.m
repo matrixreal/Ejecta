@@ -8,17 +8,19 @@
 
 - (id)initWithFrame:(CGRect)frame{
     [super initWithFrame:frame];
-    
-    app=[EJApp instance];
+
+    self.mediaPlaybackRequiresUserAction=NO;
     self.opaque=NO;
     self.backgroundColor=[UIColor clearColor];
     self.delegate=self;
+   
+    app=[EJApp instance];
     
     return self;
 }
 
 
--(JSValueRef)evalEjectaJS:(NSString *)script {
+-(JSValueRef)evalScriptInEjecta:(NSString *)script {
     
     NSLog(@"scriptJS : %@",script);
     
@@ -48,12 +50,23 @@
 - (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *url = request.URL;
-    NSString *urlString = url.absoluteString;
-    NSRange range = [urlString rangeOfString:@"exec://"];    
-    if ( range.length > 0 && range.location==0 ) {
-        NSString *script = [urlString substringFromIndex:range.length];
-//        NSLog(@"script : %@",script);
-        [self evalEjectaJS:script];
+    if ([[url scheme] isEqualToString:@"eval"]){
+        
+        // scheme://user:password@host:port/path?query#fragment
+        
+        NSLog(@"url query: %@",[url query]);
+//        NSLog(@"url fragment: %@",[url fragment]);
+        NSLog(@"url host: %@",[url host]);
+//        NSLog(@"url port: %@",[url port]);
+        NSLog(@"url path: %@",[url path]);
+//        NSLog(@"url absoluteString: %@",[url absoluteString]);
+//        NSLog(@"url relativePath: %@",[url relativePath]);
+//        NSLog(@"url relativeString: %@",[url relativeString]);
+//        NSLog(@"url parameterString: %@",[url parameterString]);
+        
+        NSString *script = [[url query] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSLog(@"script : %@",script);
+        [self evalScriptInEjecta:script];
         return NO;
     } else {
         return YES;
