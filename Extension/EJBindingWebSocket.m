@@ -41,6 +41,23 @@
 - (void)dealloc {
     // TODO
     [_socket release];
+    [protocol release];
+    [url release];
+
+    jsCONNECTING = nil;
+    jsOPEN = nil;
+    jsCLOSING = nil;
+    jsCLOSED = nil;
+    
+    JSStringRelease(jsEventData);
+    JSStringRelease(jsEventTarget);
+    JSStringRelease(jsEventMessage);
+    
+    jsEventData = nil;
+    jsEventTarget = nil;
+    jsEventMessage = nil;
+    jsGlobalContext = nil;
+    app = nil;
 	[super dealloc];
 }
 
@@ -63,6 +80,7 @@
 
 - (void)send:(NSString *)data{
     [_socket send:data];
+    //[data release];
 }
 
 
@@ -74,7 +92,7 @@
     JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
     JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
 	JSObjectSetProperty( jsGlobalContext, eventObj, jsEventData, jsMessage, kJSPropertyAttributeNone, NULL );
-    
+
     [self triggerEvent:@"message" argc:1 argv:(JSValueRef[]){ eventObj } ];
     
 }
@@ -91,7 +109,7 @@
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error;
 {
     
-     JSValueRef jsErrorMessage=NSStringToJSValue(jsGlobalContext, [error localizedDescription]);
+    JSValueRef jsErrorMessage=NSStringToJSValue(jsGlobalContext, [error localizedDescription]);
     
     JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
     JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
