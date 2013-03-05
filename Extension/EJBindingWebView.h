@@ -8,8 +8,8 @@
     
     short width, height;
     short left, top;
-    NSString *src;
     BOOL loading;
+    NSString *src;
     UIWebView *webView;
     EJApp *app;
     
