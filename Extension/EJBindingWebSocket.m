@@ -7,7 +7,6 @@
 
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
     if( self = [super initWithContext:ctx object:obj argc:argc argv:argv] ) { 
-        NSLog(@"EJBindingWebSocket initWithContext");
 
         jsCONNECTING = JSValueMakeNumber(ctx, CONNECTING );
         jsOPEN = JSValueMakeNumber(ctx, OPEN );
@@ -80,7 +79,6 @@
 
 - (void)send:(NSString *)data{
     [_socket send:data];
-    //[data release];
 }
 
 
