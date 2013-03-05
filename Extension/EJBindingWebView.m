@@ -162,7 +162,10 @@
 	// TODO 
     [src release];
     [webView release];
+    app=nil;
+    
 	[super dealloc];
+    
 }
 
 
@@ -243,11 +246,9 @@ EJ_BIND_SET(src, ctx, value) {
 	
 	NSString * newSrc = JSValueToNSString( ctx, value );
     
-	// Release the old path and texture?
+	// Release the old path
 	if( src ) {
 		[src release];
-		src = nil;
-		
     }
 	
 	if( [newSrc length] ) {
@@ -255,6 +256,7 @@ EJ_BIND_SET(src, ctx, value) {
 	}else{
         src = @"about:blank";
     }
+    [newSrc release];
     [self load:src];
     
 }
