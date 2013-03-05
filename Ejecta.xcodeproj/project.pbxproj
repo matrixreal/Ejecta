@@ -13,7 +13,6 @@
 		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
 		396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 396A661016E0104C00E752D1 /* EJBindingWebSocket.m */; };
 		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
-		39885E3816B702F500E731F1 /* EJWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3616B702F500E731F1 /* EJWebView.m */; };
 		398F983916E10B7E00386970 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983716E10B7E00386970 /* CFNetwork.framework */; };
 		398F983A16E10B7E00386970 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983816E10B7E00386970 /* Security.framework */; };
 		398F98C716E10E3B00386970 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F98C016E10E2500386970 /* libSocketRocket.a */; };
@@ -124,8 +123,6 @@
 		396A661016E0104C00E752D1 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
 		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
 		39885E3416B702F500E731F1 /* EJBindingWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebView.m; sourceTree = "<group>"; };
-		39885E3516B702F500E731F1 /* EJWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJWebView.h; sourceTree = "<group>"; };
-		39885E3616B702F500E731F1 /* EJWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJWebView.m; sourceTree = "<group>"; };
 		398F983716E10B7E00386970 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		398F983816E10B7E00386970 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		398F98B816E10E2500386970 /* SocketRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SocketRocket.xcodeproj; path = SocketRocket/SocketRocket.xcodeproj; sourceTree = "<group>"; };
@@ -312,8 +309,6 @@
 			children = (
 				39885E3316B702F500E731F1 /* EJBindingWebView.h */,
 				39885E3416B702F500E731F1 /* EJBindingWebView.m */,
-				39885E3516B702F500E731F1 /* EJWebView.h */,
-				39885E3616B702F500E731F1 /* EJWebView.m */,
 				396A660F16E0104C00E752D1 /* EJBindingWebSocket.h */,
 				396A661016E0104C00E752D1 /* EJBindingWebSocket.m */,
 			);
@@ -637,7 +632,6 @@
 				B64CE682166682700087CF94 /* main.m in Sources */,
 				B6F9AFC0169F81D400ABD91A /* EJBindingLifecycle.m in Sources */,
 				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
-				39885E3816B702F500E731F1 /* EJWebView.m in Sources */,
 				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
 				396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */,
 			);
