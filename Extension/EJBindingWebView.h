@@ -1,20 +1,26 @@
 
+#import <UIKit/UIKit.h>
+#import "JavaScriptCore/JavaScriptCore.h"
 #import "EJBindingBase.h"
-#import "EJWebView.h"
 
 
-@interface EJBindingWebView : EJBindingBase  {
+@interface EJBindingWebView : EJBindingBase <UIWebViewDelegate>  {
     
     short width, height;
     short left, top;
     NSString *src;
     BOOL loading;
-    EJWebView *webView;
+    UIWebView *webView;
     EJApp *app;
     
 }
 
+@property (nonatomic,assign) BOOL loaded;
+
+- (BOOL)load:(NSString *)path;
 - (void)reload;
-- (NSString *)eval:(NSString *)script;
+- (NSString *)evalScriptInWeb:(NSString *)script;
+- (JSValueRef)evalScriptInNative:(NSString *)script;
+- (NSString *)dictionaryToJSONString:(NSDictionary *)dictionary;
 
 @end
