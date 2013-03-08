@@ -8,22 +8,34 @@
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
     if( self = [super initWithContext:ctx object:obj argc:argc argv:argv] ) { 
 
-        jsCONNECTING = JSValueMakeNumber(ctx, CONNECTING );
-        jsOPEN = JSValueMakeNumber(ctx, OPEN );
-        jsCLOSING = JSValueMakeNumber(ctx, CLOSING );
-        jsCLOSED = JSValueMakeNumber(ctx, CLOSED );
-
-        jsEventData = JSStringCreateWithUTF8CString("data");
-        jsEventTarget = JSStringCreateWithUTF8CString("target");
-        jsEventMessage =  JSStringCreateWithUTF8CString("message");
-
         app=[EJApp instance];
         jsGlobalContext = app.jsGlobalContext;
         
-        url=JSValueToNSString(ctx, argv[0]);
-        protocol=JSValueToNSString(ctx, argv[1]);
-
-        [self open];
+        if( argc > 0 ) {
+			url = [JSValueToNSString(ctx, argv[0]) retain];
+			
+			NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+			socket = [[SRWebSocket alloc] initWithURLRequest:request];
+			socket.delegate = self;
+			[socket open];
+			readyState = kEJWebSocketReadyStateConnecting;
+		}
+		else {
+			url = [@"" retain];
+			readyState = kEJWebSocketReadyStateClosed;
+		}
+		
+		// FIXME: we don't support the 'blob' type yet, but the spec dictates this should
+		// be the default
+		binaryType = kEJWebSocketBinaryTypeBlob;
+		
+		jsEvent = JSObjectMake(ctx, NULL, NULL);
+		JSValueProtect(ctx, jsEvent);
+		jsDataName = JSStringCreateWithUTF8CString("data");
+        jsTargetName = JSStringCreateWithUTF8CString("target");
+        jsMessageName = JSStringCreateWithUTF8CString("message");
+        JSObjectSetProperty( jsGlobalContext, jsEvent, jsTargetName, jsObject, kJSPropertyAttributeNone, NULL );
+        
     }
     return self;
 
@@ -36,153 +48,130 @@
     
 }
 
+- (void)prepareGarbageCollection {
+	[socket close];
+	[socket release];
+	socket = nil;
+}
 
 - (void)dealloc {
-    // TODO
-    [_socket release];
-    [protocol release];
-    [url release];
-
-    jsCONNECTING = nil;
-    jsOPEN = nil;
-    jsCLOSING = nil;
-    jsCLOSED = nil;
-    
-    JSStringRelease(jsEventData);
-    JSStringRelease(jsEventTarget);
-    JSStringRelease(jsEventMessage);
-    
-    jsEventData = nil;
-    jsEventTarget = nil;
-    jsEventMessage = nil;
-    jsGlobalContext = nil;
+	JSValueUnprotectSafe(app.jsGlobalContext, jsEvent);
+	JSStringRelease(jsDataName);
+	JSStringRelease(jsTargetName);
+    JSStringRelease(jsMessageName);
+	[url release];
+	[socket release];
     app = nil;
 	[super dealloc];
 }
 
 
-- (void)open {
-    NSURL *_url=[NSURL URLWithString:url];
-    NSLog(@"_url : %@",_url);
-    _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:_url ]];
-//    _socket = [[SRWebSocket alloc] initWithURL:[NSURLRequest requestWithURL:_url] protocols:nil];
-    _socket.delegate = self;
-    [_socket open];
-}
-
-- (void)close;
-{
-    [_socket close];
-    _socket.delegate = nil;
-    _socket = nil;
-}
-
-- (void)send:(NSString *)data{
-    [_socket send:data];
-}
 
 
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(NSString *)message;
-{
-   
-    JSValueRef jsMessage=NSStringToJSValue(jsGlobalContext, message);
-  
-    JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
-    JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
-	JSObjectSetProperty( jsGlobalContext, eventObj, jsEventData, jsMessage, kJSPropertyAttributeNone, NULL );
+- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message
+{    
+    // string only
+	JSValueRef jsMessage = NSStringToJSValue(jsGlobalContext, message);
+	JSObjectSetProperty(jsGlobalContext, jsEvent, jsDataName, jsMessage, kJSPropertyAttributeNone, NULL);
+	[self triggerEvent:@"message" argc:1 argv:(JSValueRef[]){ jsEvent }];
+    JSObjectDeleteProperty(jsGlobalContext, jsEvent, jsDataName, NULL);
 
-    [self triggerEvent:@"message" argc:1 argv:(JSValueRef[]){ eventObj } ];
-    
 }
 
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket;
 {
-    JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
-    JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
-    [self triggerEvent:@"open" argc:1 argv:(JSValueRef[]){ eventObj } ];
+    readyState = kEJWebSocketReadyStateOpen;
+
+    [self triggerEvent:@"open" argc:1 argv:(JSValueRef[]){ jsEvent } ];
 }
 
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error;
 {
     
+	readyState = kEJWebSocketReadyStateClosed;
+    
     JSValueRef jsErrorMessage=NSStringToJSValue(jsGlobalContext, [error localizedDescription]);
+    JSObjectSetProperty( jsGlobalContext, jsEvent, jsMessageName, jsErrorMessage, kJSPropertyAttributeNone, NULL );
+    [self triggerEvent:@"error" argc:1 argv:(JSValueRef[]){ jsEvent } ];
+    JSObjectDeleteProperty(jsGlobalContext, jsEvent, jsMessageName, NULL);
     
-    JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
-    JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
-    JSObjectSetProperty( jsGlobalContext, eventObj, jsEventMessage, jsErrorMessage, kJSPropertyAttributeNone, NULL );
+    socket.delegate = nil;
+    [socket release];
+    socket = nil;
+}
+
+
+
+- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+	
+    readyState = kEJWebSocketReadyStateClosed;
     
-    [self triggerEvent:@"error" argc:1 argv:(JSValueRef[]){ eventObj } ];
+    [self triggerEvent:@"close" argc:1 argv:(JSValueRef[]){ jsEvent } ];
     
-    _socket.delegate = nil;
-    _socket = nil;
-}
-
-
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
-{
-    
-    JSObjectRef eventObj = JSObjectMake(jsGlobalContext, NULL, NULL);
-    JSObjectSetProperty( jsGlobalContext, eventObj, jsEventTarget, jsObject, kJSPropertyAttributeNone, NULL );
-    [self triggerEvent:@"close" argc:1 argv:(JSValueRef[]){ eventObj } ];
-    
-    _socket.delegate = nil;
-    _socket = nil;
+	// Unprotect self from garbage collection
+	JSValueUnprotectSafe(app.jsGlobalContext, jsObject);
+	
+    socket.delegate = nil;
+	[socket release];
+	socket = nil;
 }
 
 
 
-
-EJ_BIND_GET(CONNECTING, ctx) {
-	return jsCONNECTING;
-}
-EJ_BIND_GET(OPEN, ctx) {
-	return jsOPEN;
-}
-EJ_BIND_GET(CLOSING, ctx) {
-	return jsCLOSING;
-}
-EJ_BIND_GET(CLOSED, ctx) {
-	return jsCLOSED;
-}
-
-EJ_BIND_GET(url, ctx) {
-	return NSStringToJSValue( ctx, url );
-}
-
-EJ_BIND_GET(protocol, ctx) {
-	return NSStringToJSValue( ctx, protocol );
-}
-
-EJ_BIND_GET(readyState, ctx) {
-    readyState = _socket.readyState;
-	return JSValueMakeNumber( ctx, readyState );
-}
-
-EJ_BIND_GET(bufferedAmount, ctx) {
-	return JSValueMakeNumber( ctx, bufferedAmount );
-}
-
-
-EJ_BIND_EVENT(open);
-EJ_BIND_EVENT(message);
-EJ_BIND_EVENT(close);
-EJ_BIND_EVENT(error);
 
 EJ_BIND_FUNCTION(send, ctx, argc, argv) {
-    NSString *stringData = JSValueToNSString(ctx, argv[0]);
-    [self send:stringData];
+    if( argc < 1 || readyState != kEJWebSocketReadyStateOpen ) { return NULL; }
+    // string 
+    [socket send: JSValueToNSString(ctx, argv[0]) ];
     return NULL;
 }
 
 EJ_BIND_FUNCTION(close, ctx, argc, argv) {
-    [self close];
+	if( readyState == kEJWebSocketReadyStateClosing || readyState == kEJWebSocketReadyStateClosed ) {
+		return NULL;
+	}
+	readyState = kEJWebSocketReadyStateClosing;
+    [socket close];
     return NULL;
 }
 
+EJ_BIND_GET(url, ctx) {
+	return NSStringToJSValue(ctx, url);
+}
 
+EJ_BIND_GET(readyState, ctx) {
+	return JSValueMakeNumber(ctx, readyState);
+}
 
+EJ_BIND_GET(bufferedAmount, ctx) {
+	// FIXME: SocketRocket doesn't expose this
+	return JSValueMakeNumber(ctx, 0);
+}
+
+EJ_BIND_GET(extensions, ctx) {
+	return NSStringToJSValue(ctx, @"");
+}
+
+EJ_BIND_GET(protocol, ctx) {
+	return NSStringToJSValue(ctx, @"");
+}
+
+EJ_BIND_ENUM(binaryType, binaryType,
+     "blob",			// kEJWebSocketBinaryTypeBlob,
+     "arraybuffer"	// kEJWebSocketBinaryTypeArrayBuffer
+);
+
+EJ_BIND_EVENT(open);
+EJ_BIND_EVENT(message);
+EJ_BIND_EVENT(error);
+EJ_BIND_EVENT(close);
+
+EJ_BIND_CONST(CONNECTING, kEJWebSocketReadyStateConnecting);
+EJ_BIND_CONST(OPEN, kEJWebSocketReadyStateOpen);
+EJ_BIND_CONST(CLOSING, kEJWebSocketReadyStateClosing);
+EJ_BIND_CONST(CLOSED, kEJWebSocketReadyStateClosed);
 
 
 @end

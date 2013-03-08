@@ -4,12 +4,6 @@
 #import "EJDrawable.h"
 #import "EJCanvasContextScreen.h"
 
-static const char * EJScalingModeNames[] = {
-	[kEJScalingModeNone] = "none",
-	[kEJScalingModeFitWidth] = "fit-width",
-	[kEJScalingModeFitHeight] = "fit-height"
-};
-
 
 @interface EJBindingCanvas : EJBindingBase <EJDrawable> {
     JSObjectRef jsCanvasContext;

@@ -9,14 +9,6 @@ typedef enum {
 	kEJHttpRequestTypeText
 } EJHttpRequestType;
 
-static const char * EJHttpRequestTypeNames[] = {
-	[kEJHttpRequestTypeString] = "",
-	[kEJHttpRequestTypeArrayBuffer] = "arraybuffer",
-	[kEJHttpRequestTypeBlob] = "blob",
-	[kEJHttpRequestTypeDocument] = "document",
-	[kEJHttpRequestTypeJSON] = "json",
-	[kEJHttpRequestTypeText] = "text"
-};
 
 typedef enum {
 	kEJHttpRequestStateUnsent = 0,

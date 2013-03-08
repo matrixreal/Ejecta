@@ -104,8 +104,11 @@ EJ_BIND_GET(MSAASamples, ctx) {
 	return JSValueMakeNumber(ctx, msaaSamples);
 }
 
-EJ_BIND_ENUM(scalingMode, EJScalingModeNames, scalingMode);
-
+EJ_BIND_ENUM(scalingMode, scalingMode,
+             "none",	// kEJScalingModeNone
+             "fit",	// kEJScalingModeFit
+             "zoom"	// FitHeight
+             );
 
 - (EJTexture *)texture {
 	if( [renderingContext isKindOfClass:[EJCanvasContextTexture class]] ) {

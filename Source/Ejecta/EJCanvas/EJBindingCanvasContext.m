@@ -46,11 +46,45 @@ EJ_BIND_GET(backingStorePixelRatio, ctx) {
 
 
 
-EJ_BIND_ENUM(globalCompositeOperation, EJCompositeOperationNames, renderingContext.globalCompositeOperation);
-EJ_BIND_ENUM(lineCap, EJLineCapNames, renderingContext.state->lineCap);
-EJ_BIND_ENUM(lineJoin, EJLineJoinNames, renderingContext.state->lineJoin);
-EJ_BIND_ENUM(textAlign, EJTextAlignNames, renderingContext.state->textAlign);
-EJ_BIND_ENUM(textBaseline, EJTextBaselineNames, renderingContext.state->textBaseline);
+EJ_BIND_ENUM(globalCompositeOperation, renderingContext.globalCompositeOperation,
+             "source-over",		// kEJCompositeOperationSourceOver
+             "lighter",			// kEJCompositeOperationLighter
+             "darker",			// kEJCompositeOperationDarker
+             "destination-out",	// kEJCompositeOperationDestinationOut
+             "destination-over",	// kEJCompositeOperationDestinationOver
+             "source-atop",		// kEJCompositeOperationSourceAtop
+             "xor"				// kEJCompositeOperationXOR
+             );
+
+EJ_BIND_ENUM(lineCap, renderingContext.state->lineCap,
+             "butt",		// kEJLineCapButt
+             "round",	// kEJLineCapRound
+             "square"	// kEJLineCapSquare
+             );
+
+EJ_BIND_ENUM(lineJoin, renderingContext.state->lineJoin,
+             "miter",	// kEJLineJoinMiter
+             "bevel",	// kEJLineJoinBevel
+             "round"		// kEJLineJoinRound
+             );
+
+EJ_BIND_ENUM(textAlign, renderingContext.state->textAlign,
+             "start",	// kEJTextAlignStart
+             "end",		// kEJTextAlignEnd
+             "left",		// kEJTextAlignLeft
+             "center",	// kEJTextAlignCenter
+             "right"		// kEJTextAlignRight
+             );
+
+EJ_BIND_ENUM(textBaseline, renderingContext.state->textBaseline,
+             "alphabetic",	// kEJTextBaselineAlphabetic
+             "middle",		// kEJTextBaselineMiddle
+             "top",			// kEJTextBaselineTop
+             "hanging",		// kEJTextBaselineHanging
+             "bottom",		// kEJTextBaselineBottom
+             "ideographic"	// kEJTextBaselineIdeographic
+             );
+
 
 EJ_BIND_GET(fillStyle, ctx ) {
 	return ColorRGBAToJSValue(ctx, renderingContext.state->fillColor);

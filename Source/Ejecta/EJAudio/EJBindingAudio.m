@@ -212,7 +212,12 @@ EJ_BIND_GET(ended, ctx) {
 	return JSValueMakeBoolean(ctx, ended);
 }
 
-EJ_BIND_ENUM(preload, EJAudioPreloadNames, self.preload);
+EJ_BIND_ENUM(preload, self.preload,
+             "none",		// kEJAudioPreloadNone
+             "metadata", // kEJAudioPreloadMetadata
+             "auto"		// kEJAudioPreloadAuto
+             );
+
 
 EJ_BIND_EVENT(canplaythrough);
 EJ_BIND_EVENT(ended);

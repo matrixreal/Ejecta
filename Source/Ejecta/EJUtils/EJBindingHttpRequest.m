@@ -291,7 +291,14 @@ EJ_BIND_SET(timeout, ctx, value) {
 	timeout = JSValueToNumberFast( ctx, value );
 }
 
-EJ_BIND_ENUM(responseType, EJHttpRequestTypeNames, type);
+EJ_BIND_ENUM(responseType, type,
+             "",				// kEJHttpRequestTypeString
+             "arraybuffer",	// kEJHttpRequestTypeArrayBuffer
+             "blob",			// kEJHttpRequestTypeBlob
+             "document",		// kEJHttpRequestTypeDocument
+             "json",			// kEJHttpRequestTypeJSON
+             "text"			// kEJHttpRequestTypeText
+             );
 
 EJ_BIND_CONST(UNSENT, kEJHttpRequestStateUnsent);
 EJ_BIND_CONST(OPENED, kEJHttpRequestStateOpened);
