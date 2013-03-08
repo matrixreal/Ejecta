@@ -62,6 +62,9 @@
 	[url release];
 	[socket release];
     app = nil;
+    jsGlobalContext = nil;
+    binaryType = nil;
+	readyState = nil;
 	[super dealloc];
 }
 
