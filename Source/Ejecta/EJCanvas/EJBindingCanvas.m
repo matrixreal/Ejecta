@@ -10,7 +10,8 @@ static int firstCanvasInstance = YES;
 	if( self = [super initWithContext:ctx object:obj argc:argc argv:argv] ) {
 	
 		ejectaInstance = [EJApp instance]; // Keep a local copy - may be faster?
-		scalingMode = kEJScalingModeFitWidth;
+//		scalingMode = kEJScalingModeFitWidth;
+        scalingMode = kEJScalingModeFit;
 		useRetinaResolution = true;
 		msaaEnabled = false;
 		msaaSamples = 2;

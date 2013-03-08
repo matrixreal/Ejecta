@@ -67,10 +67,12 @@ static EJApp * ejectaInstance = NULL;
 - (id)initWithWindow:(UIWindow *)windowp {
 	if( self = [super init] ) {
 		
-		landscapeMode = [[[[NSBundle mainBundle] infoDictionary]
-			objectForKey:@"UIInterfaceOrientation"] hasPrefix:@"UIInterfaceOrientationLandscape"];
+//		landscapeMode = [[[[NSBundle mainBundle] infoDictionary]
+//			objectForKey:@"UIInterfaceOrientation"] hasPrefix:@"UIInterfaceOrientationLandscape"];
 		
-	
+        landscapeMode = [[[NSBundle mainBundle] infoDictionary][@"UIInterfaceOrientation"]
+                         hasPrefix:@"UIInterfaceOrientationLandscape"];
+        
 		ejectaInstance = self;
 		window = windowp;
 		[window setRootViewController:self];

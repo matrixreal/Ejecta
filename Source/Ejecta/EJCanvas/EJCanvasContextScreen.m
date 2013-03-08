@@ -17,14 +17,29 @@
     float contentScale = (useRetinaResolution && [UIScreen mainScreen].scale == 2) ? 2 : 1;
 	float aspect = frame.size.width / frame.size.height;
 	
-	if( scalingMode == kEJScalingModeFitWidth ) {
+    float screenAspect = screen.width / screen.height;
+	
+	// Scale to fit with borders, or zoom borderless
+	if(
+       (scalingMode == kEJScalingModeFit && aspect >= screenAspect) ||
+       (scalingMode == kEJScalingModeZoom && aspect <= screenAspect)
+       ) {
 		frame.size.width = screen.width;
 		frame.size.height = screen.width / aspect;
 	}
-	else if( scalingMode == kEJScalingModeFitHeight ) {
+	else if (
+             (scalingMode == kEJScalingModeFit && aspect < screenAspect) ||
+             (scalingMode == kEJScalingModeZoom && aspect > screenAspect)
+             ) {
 		frame.size.width = screen.height * aspect;
 		frame.size.height = screen.height;
 	}
+	
+	// Center view
+	frame.origin.x = (screen.width - frame.size.width)/2;
+	frame.origin.y = (screen.height - frame.size.height)/2;
+
+ 
 	float internalScaling = frame.size.width / (float)width;
 	[EJApp instance].internalScaling = internalScaling;
 	
