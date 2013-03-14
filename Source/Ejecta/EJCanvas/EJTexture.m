@@ -193,10 +193,13 @@ static GLint EJTextureGlobalFilter = GL_LINEAR;
 	// way to opt-out - thanks Apple, awesome idea.
 	// So, for PNG images we use the lodepng library instead.
 	
-	return [[path pathExtension] isEqualToString:@"png"]
-		? [self loadPixelsWithLodePNGFromPath:path]
-		: [self loadPixelsWithCGImageFromPath:path];
+//	return [[path pathExtension] isEqualToString:@"png"]
+//		? [self loadPixelsWithLodePNGFromPath:path]
+//		: [self loadPixelsWithCGImageFromPath:path];
+    
+    return [self loadPixelsWithLodePNGFromPath:path];
 }
+
 
 - (GLubyte *)loadPixelsWithCGImageFromPath:(NSString *)path {	
 	UIImage * tmpImage = [[UIImage alloc] initWithContentsOfFile:path];
@@ -205,9 +208,14 @@ static GLint EJTextureGlobalFilter = GL_LINEAR;
 	[self setWidth:CGImageGetWidth(image) height:CGImageGetHeight(image)];
 	
 	GLubyte * pixels = (GLubyte *)calloc( realWidth * realHeight * 4, sizeof(GLubyte) );
-	CGContextRef context = CGBitmapContextCreate(pixels, realWidth, realHeight, 8, realWidth * 4, CGImageGetColorSpace(image), kCGImageAlphaPremultipliedLast);
+//    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(pixels, realWidth, realHeight, 8, realWidth * 4, colorSpace, kCGImageAlphaPremultipliedLast);
 	CGContextDrawImage(context, CGRectMake(0.0, realHeight - height, (CGFloat)width, (CGFloat)height), image);
 	CGContextRelease(context);
+
+    CGColorSpaceRelease(colorSpace);
+    
 	[tmpImage release];
 	
 	return pixels;
