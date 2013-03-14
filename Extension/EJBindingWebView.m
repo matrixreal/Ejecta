@@ -89,7 +89,7 @@
     
     [webView loadRequest:appReq];
     while (webView.loading){
-        [NSThread sleepForTimeInterval:9.0f];
+        [NSThread sleepForTimeInterval:2.0f];
     }
     return YES;
 }
