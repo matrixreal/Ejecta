@@ -32,8 +32,8 @@
 		jsEvent = JSObjectMake(ctx, NULL, NULL);
 		JSValueProtect(ctx, jsEvent);
 		jsDataName = JSStringCreateWithUTF8CString("data");
-        jsTargetName = JSStringCreateWithUTF8CString("target");
         jsMessageName = JSStringCreateWithUTF8CString("message");
+        jsTargetName = JSStringCreateWithUTF8CString("target");
         JSObjectSetProperty( jsGlobalContext, jsEvent, jsTargetName, jsObject, kJSPropertyAttributeNone, NULL );
         
     }
