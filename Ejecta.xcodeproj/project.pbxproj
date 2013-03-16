@@ -11,6 +11,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
+		393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 393EF97016F4947200FE79E0 /* OpenUDID.m */; };
 		396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 396A661016E0104C00E752D1 /* EJBindingWebSocket.m */; };
 		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
 		398F983916E10B7E00386970 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983716E10B7E00386970 /* CFNetwork.framework */; };
@@ -119,6 +120,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext.h; sourceTree = "<group>"; };
 		3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext.m; sourceTree = "<group>"; };
+		393EF96F16F4947200FE79E0 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
+		393EF97016F4947200FE79E0 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
 		396A660F16E0104C00E752D1 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
 		396A661016E0104C00E752D1 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
 		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
@@ -304,6 +307,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		393EF96E16F4947200FE79E0 /* OpenUDID */ = {
+			isa = PBXGroup;
+			children = (
+				393EF96F16F4947200FE79E0 /* OpenUDID.h */,
+				393EF97016F4947200FE79E0 /* OpenUDID.m */,
+			);
+			path = OpenUDID;
+			sourceTree = "<group>";
+		};
 		39885E3216B702F500E731F1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +449,7 @@
 		B64CE652166682700087CF94 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				393EF96E16F4947200FE79E0 /* OpenUDID */,
 				B64CE653166682700087CF94 /* JavaScriptCore */,
 				B64CE65E166682700087CF94 /* lodepng */,
 			);
@@ -634,6 +647,7 @@
 				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
 				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
 				396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */,
+				393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

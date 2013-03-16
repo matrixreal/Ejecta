@@ -3,6 +3,8 @@
 #import <netinet/in.h>
 #import <SystemConfiguration/SystemConfiguration.h>
 
+#import "OpenUDID.h"
+
 @implementation EJBindingEjectaCore
 
 - (void)dealloc {
@@ -189,6 +191,11 @@ EJ_BIND_GET(onLine, ctx) {
 	}
 	
 	return JSValueMakeBoolean(ctx, false);
+}
+
+EJ_BIND_GET(udid, ctx) {
+    NSString* openUDID = [OpenUDID value];
+    return NSStringToJSValue(ctx, openUDID);
 }
 
 
