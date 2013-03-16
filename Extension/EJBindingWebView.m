@@ -1,6 +1,6 @@
 
 #import "EJBindingWebView.h"
-
+#import "OpenUDID.h"
 
 @implementation EJBindingWebView 
 
@@ -125,7 +125,9 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
-    NSString *script=@"window._webviewId=Date.now();window._webviewHasLoaded=true; ";
+    NSString* openUDID = [OpenUDID value];    
+    NSString* script = [NSString stringWithFormat:@"window._webviewId=Date.now();window._webviewHasLoaded=true;window.udid=\"%@\";", openUDID];
+    NSLog(@"webview onload : %@", script);
     [_webView stringByEvaluatingJavaScriptFromString:script];
     
 }
@@ -133,6 +135,7 @@
 - (BOOL) webView:(UIWebView*)_webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSURL *url = request.URL;
+    
     if ([[url scheme] isEqualToString:@"eval"]){
         
         // scheme://user:password@host:port/path?query#fragment
@@ -151,6 +154,10 @@
         [self evalScriptInNative:script];
         return NO;
     } else {
+        if ([[url absoluteString] isEqualToString:@"about:blank"]){
+            return NO;
+        }
+        NSLog(@"url: %@",[url absoluteURL]);
         return YES;
     }
     
