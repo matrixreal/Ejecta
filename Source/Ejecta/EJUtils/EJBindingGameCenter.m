@@ -208,4 +208,24 @@ EJ_BIND_GET(authed, ctx) {
 	return JSValueMakeBoolean(ctx, authed);
 }
 
+EJ_BIND_GET(localPlayer, ctx) {
+    
+    if (authed){
+        GKLocalPlayer *localPlayer=[GKLocalPlayer localPlayer];
+        
+        JSObjectRef jsLocalPlayer = JSObjectMake(ctx, NULL, NULL);
+        JSValueProtect(ctx, jsLocalPlayer);
+        
+        JSStringRef keyPlayerID = JSStringCreateWithUTF8CString("playerID");
+        JSValueRef playerID = NSStringToJSValue(ctx, localPlayer.playerID);
+        
+        JSObjectSetProperty( ctx, jsLocalPlayer, keyPlayerID, playerID, kJSPropertyAttributeNone, NULL );
+        
+        
+        return jsLocalPlayer;
+    }
+    return JSValueMakeNull(ctx);
+
+}
+
 @end
