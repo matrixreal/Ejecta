@@ -378,6 +378,7 @@ static EJApp * ejectaInstance = NULL;
 	return NULL;
 }
 
+
 - (void)setCurrentRenderingContext:(EJCanvasContext *)renderingContext {
 	if( renderingContext != currentRenderingContext ) {
 		[currentRenderingContext flushBuffers];

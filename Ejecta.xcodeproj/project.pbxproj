@@ -12,6 +12,10 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
 		393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 393EF97016F4947200FE79E0 /* OpenUDID.m */; };
+		395177C716FA37E3004377B4 /* EJBindingIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C216FA37E3004377B4 /* EJBindingIAPManager.m */; };
+		395177C816FA37E3004377B4 /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C416FA37E3004377B4 /* EJBindingIAPProduct.m */; };
+		395177C916FA37E3004377B4 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C616FA37E3004377B4 /* EJBindingIAPTransaction.m */; };
+		395177D416FA3F9C004377B4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395177D316FA3F9C004377B4 /* StoreKit.framework */; };
 		396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 396A661016E0104C00E752D1 /* EJBindingWebSocket.m */; };
 		39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 39885E3416B702F500E731F1 /* EJBindingWebView.m */; };
 		398F983916E10B7E00386970 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983716E10B7E00386970 /* CFNetwork.framework */; };
@@ -122,6 +126,13 @@
 		3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext.m; sourceTree = "<group>"; };
 		393EF96F16F4947200FE79E0 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		393EF97016F4947200FE79E0 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		395177C116FA37E3004377B4 /* EJBindingIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPManager.h; sourceTree = "<group>"; };
+		395177C216FA37E3004377B4 /* EJBindingIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPManager.m; sourceTree = "<group>"; };
+		395177C316FA37E3004377B4 /* EJBindingIAPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPProduct.h; sourceTree = "<group>"; };
+		395177C416FA37E3004377B4 /* EJBindingIAPProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPProduct.m; sourceTree = "<group>"; };
+		395177C516FA37E3004377B4 /* EJBindingIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPTransaction.h; sourceTree = "<group>"; };
+		395177C616FA37E3004377B4 /* EJBindingIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPTransaction.m; sourceTree = "<group>"; };
+		395177D316FA3F9C004377B4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		396A660F16E0104C00E752D1 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
 		396A661016E0104C00E752D1 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
 		39885E3316B702F500E731F1 /* EJBindingWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebView.h; sourceTree = "<group>"; };
@@ -237,6 +248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395177D416FA3F9C004377B4 /* StoreKit.framework in Frameworks */,
 				398F98C716E10E3B00386970 /* libSocketRocket.a in Frameworks */,
 				398F983916E10B7E00386970 /* CFNetwork.framework in Frameworks */,
 				398F983A16E10B7E00386970 /* Security.framework in Frameworks */,
@@ -273,9 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				398F98B816E10E2500386970 /* SocketRocket.xcodeproj */,
+				B68C5AEF132E6CD60015092E /* App */,
 				39885E3216B702F500E731F1 /* Extension */,
 				B64CE60E166682700087CF94 /* Source */,
-				B68C5AEF132E6CD60015092E /* App */,
 				B64CE683166682B10087CF94 /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -286,6 +298,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				395177D316FA3F9C004377B4 /* StoreKit.framework */,
 				398F983716E10B7E00386970 /* CFNetwork.framework */,
 				398F983816E10B7E00386970 /* Security.framework */,
 				B64CE60C1666825F0087CF94 /* libJavaScriptCore.a */,
@@ -314,6 +327,19 @@
 				393EF97016F4947200FE79E0 /* OpenUDID.m */,
 			);
 			path = OpenUDID;
+			sourceTree = "<group>";
+		};
+		395177C016FA37E3004377B4 /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				395177C116FA37E3004377B4 /* EJBindingIAPManager.h */,
+				395177C216FA37E3004377B4 /* EJBindingIAPManager.m */,
+				395177C316FA37E3004377B4 /* EJBindingIAPProduct.h */,
+				395177C416FA37E3004377B4 /* EJBindingIAPProduct.m */,
+				395177C516FA37E3004377B4 /* EJBindingIAPTransaction.h */,
+				395177C616FA37E3004377B4 /* EJBindingIAPTransaction.m */,
+			);
+			path = IAP;
 			sourceTree = "<group>";
 		};
 		39885E3216B702F500E731F1 /* Extension */ = {
@@ -428,6 +454,7 @@
 		B64CE642166682700087CF94 /* EJUtils */ = {
 			isa = PBXGroup;
 			children = (
+				395177C016FA37E3004377B4 /* IAP */,
 				B64CE643166682700087CF94 /* EJBindingAccelerometer.h */,
 				B64CE644166682700087CF94 /* EJBindingAccelerometer.m */,
 				B64CE645166682700087CF94 /* EJBindingAdBanner.h */,
@@ -648,6 +675,9 @@
 				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
 				396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */,
 				393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */,
+				395177C716FA37E3004377B4 /* EJBindingIAPManager.m in Sources */,
+				395177C816FA37E3004377B4 /* EJBindingIAPProduct.m in Sources */,
+				395177C916FA37E3004377B4 /* EJBindingIAPTransaction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
