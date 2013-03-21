@@ -46,7 +46,6 @@
 
 -(JSValueRef)evalScriptInNative:(NSString *)script {
     
-    NSLog(@"script : %@",script);
     
     JSGlobalContextRef jsGlobalContext=[app jsGlobalContext];
     
@@ -140,17 +139,20 @@
         
         // scheme://user:password@host:port/path?query#fragment
         
-        NSLog(@"url query: %@",[url query]);
+//        NSLog(@"url query: %@",[url query]);
         //        NSLog(@"url fragment: %@",[url fragment]);
-        NSLog(@"url host: %@",[url host]);
+//        NSLog(@"url host: %@",[url host]);
         //        NSLog(@"url port: %@",[url port]);
-        NSLog(@"url path: %@",[url path]);
+//        NSLog(@"url path: %@",[url path]);
         //        NSLog(@"url absoluteString: %@",[url absoluteString]);
         //        NSLog(@"url relativePath: %@",[url relativePath]);
         //        NSLog(@"url relativeString: %@",[url relativeString]);
         //        NSLog(@"url parameterString: %@",[url parameterString]);
         
         NSString *script = [[url query] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSLog(@"evalScriptInNative : %@",script);
+        
         [self evalScriptInNative:script];
         return NO;
     } else {
@@ -179,7 +181,7 @@
 EJ_BIND_FUNCTION( eval, ctx, argc, argv ) {
     NSString *script = JSValueToNSString(ctx, argv[0]);
     
-    NSLog(@"script : %@", script);
+    NSLog(@"evalScriptInWeb : %@", script);
     NSString *result = [self evalScriptInWeb:script];
     
     JSStringRef _result = JSStringCreateWithUTF8CString( [result UTF8String] );

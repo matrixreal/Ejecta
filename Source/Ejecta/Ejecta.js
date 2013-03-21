@@ -284,4 +284,33 @@ window.document._eventInitializers.pagehide =
 	}
 };
 
+// Modified By fins 
+// window.WebView=function(){
+// 	return new Ejecta.WebView();
+// }
+window.WebView=Ejecta.WebView;
+
+window.getUDID=function(){
+	return ejecta.udid;
+}
+
+window.getUUID=function(){
+	return ejecta.uuid;
+}
+
+ 
+var timer;
+window.useTimer=function(){
+	if (!timer){
+		timer=new Ejecta.Timer();
+	}
+	window.setTimeout = function(cb, t){ return timer.setTimeout(cb, t); };
+	window.setInterval = function(cb, t){ return timer.setInterval(cb, t); };
+	window.clearTimeout = function(id){ return timer.clearTimeout(id); };
+	window.clearInterval = function(id){ return timer.clearInterval(id); };
+	window.requestAnimationFrame = function(cb, element){ return timer.setTimeout(cb, 16); };
+
+};
+
+
 })(this);

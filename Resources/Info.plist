@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationExitsOnSuspend</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleDisplayName</key>
@@ -43,12 +45,18 @@
 	<key>NSMainNibFile~ipad</key>
 	<string>MainWindow</string>
 	<key>UIInterfaceOrientation</key>
-	<string>UIInterfaceOrientationPortrait</string>
+	<string>UIInterfaceOrientationLandscapeLeft</string>
 	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 </dict>
 </plist>
