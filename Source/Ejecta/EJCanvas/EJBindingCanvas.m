@@ -1,5 +1,5 @@
 #import "EJBindingCanvas.h"
-#import "EJBindingCanvasContext.h"
+#import "EJBindingCanvasContext2D.h"
 
 
 @implementation EJBindingCanvas
@@ -147,9 +147,9 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	ejectaInstance.currentRenderingContext = renderingContext;
     
     // Create the JS object
-    EJBindingCanvasContext *binding = [[EJBindingCanvasContext alloc]
+    EJBindingCanvasContext2D *binding = [[EJBindingCanvasContext2D alloc]
                                          initWithCanvas:jsObject renderingContext:(EJCanvasContext *)renderingContext];
-    jsCanvasContext = [EJBindingCanvasContext createJSObjectWithContext:ctx instance:binding];
+    jsCanvasContext = [EJBindingCanvasContext2D createJSObjectWithContext:ctx instance:binding];
     [binding release];
     JSValueProtect(ctx, jsCanvasContext);
     
