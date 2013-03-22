@@ -19,6 +19,13 @@
     
 }
 
+// for the New Ejecta
+- (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
+    
+    return [self initWithContext:ctxp object:nil argc:argc argv:argv];
+    
+}
+
         
 - (JSValueRef)createTimer:(JSContextRef)ctx argc:(size_t)argc argv:(const JSValueRef [])argv repeat:(BOOL)repeat {
 	if( argc != 2 || !JSValueIsObject(ctx, argv[0]) || !JSValueIsNumber(ctx, argv[1]) ) return NULL;

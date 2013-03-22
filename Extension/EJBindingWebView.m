@@ -7,7 +7,9 @@
 @synthesize loaded;
 
 - (id)initWithContext:(JSContextRef)ctx object:(JSObjectRef)obj argc:(size_t)argc argv:(const JSValueRef [])argv {
-    
+  
+    if( self = [super initWithContext:ctx object:obj argc:argc argv:argv] ) {
+
     app=[EJApp instance];
     
     CGSize screen = app.view.bounds.size;
@@ -27,6 +29,7 @@
     
     //[webView eval: @"console.log('test eval')"];
     
+    }
     return self;
     
 }
