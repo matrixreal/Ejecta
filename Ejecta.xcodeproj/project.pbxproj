@@ -10,8 +10,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */; };
+		3920D5EA16D2C81500C0061D /* EJBindingCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 3920D5E916D2C81500C0061D /* EJBindingCanvasContext2D.m */; };
 		393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = 393EF97016F4947200FE79E0 /* OpenUDID.m */; };
+		394357D916FCBE0100538FBD /* EJBindingBatchContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 394357D816FCBE0100538FBD /* EJBindingBatchContext2D.m */; };
 		395177C716FA37E3004377B4 /* EJBindingIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C216FA37E3004377B4 /* EJBindingIAPManager.m */; };
 		395177C816FA37E3004377B4 /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C416FA37E3004377B4 /* EJBindingIAPProduct.m */; };
 		395177C916FA37E3004377B4 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 395177C616FA37E3004377B4 /* EJBindingIAPTransaction.m */; };
@@ -123,10 +124,12 @@
 		1D6058910D05DD3D006BFB54 /* Ejecta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ejecta.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext.h; sourceTree = "<group>"; };
-		3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext.m; sourceTree = "<group>"; };
+		3920D5E816D2C81500C0061D /* EJBindingCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext2D.h; sourceTree = "<group>"; };
+		3920D5E916D2C81500C0061D /* EJBindingCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext2D.m; sourceTree = "<group>"; };
 		393EF96F16F4947200FE79E0 /* OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenUDID.h; sourceTree = "<group>"; };
 		393EF97016F4947200FE79E0 /* OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenUDID.m; sourceTree = "<group>"; };
+		394357D716FCBE0100538FBD /* EJBindingBatchContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingBatchContext2D.h; sourceTree = "<group>"; };
+		394357D816FCBE0100538FBD /* EJBindingBatchContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingBatchContext2D.m; sourceTree = "<group>"; };
 		395177C116FA37E3004377B4 /* EJBindingIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPManager.h; sourceTree = "<group>"; };
 		395177C216FA37E3004377B4 /* EJBindingIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPManager.m; sourceTree = "<group>"; };
 		395177C316FA37E3004377B4 /* EJBindingIAPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPProduct.h; sourceTree = "<group>"; };
@@ -348,6 +351,8 @@
 		39885E3216B702F500E731F1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				394357D716FCBE0100538FBD /* EJBindingBatchContext2D.h */,
+				394357D816FCBE0100538FBD /* EJBindingBatchContext2D.m */,
 				3961B1BF16FB6C500087139A /* EJBindingTimer.h */,
 				3961B1C016FB6C500087139A /* EJBindingTimer.m */,
 				39885E3316B702F500E731F1 /* EJBindingWebView.h */,
@@ -426,8 +431,8 @@
 		B64CE624166682700087CF94 /* EJCanvas */ = {
 			isa = PBXGroup;
 			children = (
-				3920D5E816D2C81500C0061D /* EJBindingCanvasContext.h */,
-				3920D5E916D2C81500C0061D /* EJBindingCanvasContext.m */,
+				3920D5E816D2C81500C0061D /* EJBindingCanvasContext2D.h */,
+				3920D5E916D2C81500C0061D /* EJBindingCanvasContext2D.m */,
 				B64CE627166682700087CF94 /* EJBindingCanvas.h */,
 				B64CE628166682700087CF94 /* EJBindingCanvas.m */,
 				B64CE629166682700087CF94 /* EJBindingImage.h */,
@@ -677,13 +682,14 @@
 				B64CE682166682700087CF94 /* main.m in Sources */,
 				B6F9AFC0169F81D400ABD91A /* EJBindingLifecycle.m in Sources */,
 				39885E3716B702F500E731F1 /* EJBindingWebView.m in Sources */,
-				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext.m in Sources */,
+				3920D5EA16D2C81500C0061D /* EJBindingCanvasContext2D.m in Sources */,
 				396A661316E0104D00E752D1 /* EJBindingWebSocket.m in Sources */,
 				393EF97116F4947200FE79E0 /* OpenUDID.m in Sources */,
 				395177C716FA37E3004377B4 /* EJBindingIAPManager.m in Sources */,
 				395177C816FA37E3004377B4 /* EJBindingIAPProduct.m in Sources */,
 				395177C916FA37E3004377B4 /* EJBindingIAPTransaction.m in Sources */,
 				3961B1C116FB6C500087139A /* EJBindingTimer.m in Sources */,
+				394357D916FCBE0100538FBD /* EJBindingBatchContext2D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
