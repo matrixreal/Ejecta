@@ -197,7 +197,7 @@ static GLint EJTextureGlobalFilter = GL_LINEAR;
 //		? [self loadPixelsWithLodePNGFromPath:path]
 //		: [self loadPixelsWithCGImageFromPath:path];
     
-    return [self loadPixelsWithLodePNGFromPath:path];
+    return [self loadPixelsWithCGImageFromPath:path];
 }
 
 
