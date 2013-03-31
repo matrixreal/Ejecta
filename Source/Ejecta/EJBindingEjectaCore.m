@@ -220,4 +220,10 @@ EJ_BIND_GET(uuid, ctx) {
 	return NSStringToJSValue(ctx, app_uuid);
 }
 
+EJ_BIND_GET(ver, ctx){
+    NSString *ver=[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];    
+    return NSStringToJSValue(ctx, ver);
+}
+
+
 @end

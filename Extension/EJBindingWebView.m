@@ -194,7 +194,7 @@ EJ_BIND_FUNCTION( eval, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( isLoaded, ctx, argc, argv ) {
-    if ([[self evalScriptInWeb:@"document.readyState==='complete'"] isEqualToString:@"true"]){
+    if ([[self evalScriptInWeb:@"!!(document.readyState==='complete'&&window._webviewId)"] isEqualToString:@"true"]){
         return JSValueMakeBoolean(ctx, true);
     }
     return JSValueMakeBoolean(ctx, false);
