@@ -23,6 +23,7 @@
 		398F983916E10B7E00386970 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983716E10B7E00386970 /* CFNetwork.framework */; };
 		398F983A16E10B7E00386970 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F983816E10B7E00386970 /* Security.framework */; };
 		398F98C716E10E3B00386970 /* libSocketRocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 398F98C016E10E2500386970 /* libSocketRocket.a */; };
+		39927B8F170CCC8E00267A21 /* EJBindingApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 39927B8E170CCC8E00267A21 /* EJBindingApp.m */; };
 		5B7B76761619DB9700691910 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7B76751619DB9700691910 /* CoreText.framework */; };
 		B6074FF315F8E41700D987F9 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6074FF215F8E41600D987F9 /* GameKit.framework */; };
 		B607AB67132EA6C300D7C3EA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B607AB66132EA6C300D7C3EA /* OpenAL.framework */; };
@@ -121,7 +122,7 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* Ejecta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ejecta.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Ejecta-Classic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ejecta-Classic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3920D5E816D2C81500C0061D /* EJBindingCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext2D.h; sourceTree = "<group>"; };
@@ -146,6 +147,8 @@
 		398F983716E10B7E00386970 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		398F983816E10B7E00386970 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		398F98B816E10E2500386970 /* SocketRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SocketRocket.xcodeproj; path = SocketRocket/SocketRocket.xcodeproj; sourceTree = "<group>"; };
+		39927B8D170CCC8E00267A21 /* EJBindingApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingApp.h; sourceTree = "<group>"; };
+		39927B8E170CCC8E00267A21 /* EJBindingApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingApp.m; sourceTree = "<group>"; };
 		5B7B76751619DB9700691910 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B6074FF215F8E41600D987F9 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B607AB66132EA6C300D7C3EA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -282,7 +285,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* Ejecta.app */,
+				1D6058910D05DD3D006BFB54 /* Ejecta-Classic.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +354,8 @@
 		39885E3216B702F500E731F1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				39927B8D170CCC8E00267A21 /* EJBindingApp.h */,
+				39927B8E170CCC8E00267A21 /* EJBindingApp.m */,
 				394357D716FCBE0100538FBD /* EJBindingBatchContext2D.h */,
 				394357D816FCBE0100538FBD /* EJBindingBatchContext2D.m */,
 				3961B1BF16FB6C500087139A /* EJBindingTimer.h */,
@@ -539,9 +544,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Ejecta */ = {
+		1D6058900D05DD3D006BFB54 /* Ejecta-Classic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ejecta" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ejecta-Classic" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -552,9 +557,9 @@
 			dependencies = (
 				398F98CA16E10E5E00386970 /* PBXTargetDependency */,
 			);
-			name = Ejecta;
+			name = "Ejecta-Classic";
 			productName = iOSImpact;
-			productReference = 1D6058910D05DD3D006BFB54 /* Ejecta.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Ejecta-Classic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -565,7 +570,7 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ejecta" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ejecta-Classic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -586,7 +591,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Ejecta */,
+				1D6058900D05DD3D006BFB54 /* Ejecta-Classic */,
 			);
 		};
 /* End PBXProject section */
@@ -690,6 +695,7 @@
 				395177C916FA37E3004377B4 /* EJBindingIAPTransaction.m in Sources */,
 				3961B1C116FB6C500087139A /* EJBindingTimer.m in Sources */,
 				394357D916FCBE0100538FBD /* EJBindingBatchContext2D.m in Sources */,
+				39927B8F170CCC8E00267A21 /* EJBindingApp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +737,7 @@
 					"-all_load",
 					"-fno-objc-arc",
 				);
-				PRODUCT_NAME = Ejecta;
+				PRODUCT_NAME = "Ejecta-Classic";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -762,7 +768,7 @@
 					"-all_load",
 					"-fno-objc-arc",
 				);
-				PRODUCT_NAME = Ejecta;
+				PRODUCT_NAME = "Ejecta-Classic";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -814,7 +820,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ejecta" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Ejecta-Classic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -823,7 +829,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ejecta" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Ejecta-Classic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

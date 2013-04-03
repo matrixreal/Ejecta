@@ -25,11 +25,13 @@
 }
 
 - (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController {
-	[[EJApp instance] dismissModalViewControllerAnimated:YES];
+//	[[EJApp instance] dismissModalViewControllerAnimated:YES];
+    [viewController.presentingViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController {
-	[[EJApp instance] dismissModalViewControllerAnimated:YES];
+//	[[EJApp instance] dismissModalViewControllerAnimated:YES];
+    [viewController.presentingViewController dismissModalViewControllerAnimated:YES];
 }
 
 
