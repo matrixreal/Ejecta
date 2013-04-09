@@ -199,7 +199,7 @@ EJ_BIND_FUNCTION(send, ctx, argc, argv) {
 	NSURL * requestUrl = [NSURL URLWithString:url];
 	if( !requestUrl.host ) {
 		// No host? Assume we have a local file
-		requestUrl = [NSURL fileURLWithPath:[[EJApp instance] pathForResource:url]];
+        requestUrl = [NSURL fileURLWithPath:[[EJApp instance] pathForResource:requestUrl.path]];
 	}
 	NSMutableURLRequest * request = [[NSMutableURLRequest alloc] initWithURL:requestUrl];
 	[request setHTTPMethod:method];
