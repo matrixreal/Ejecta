@@ -163,6 +163,9 @@ window.document = {
 	head: new HTMLElement( 'head' ),
 	body: new HTMLElement( 'body' ),
 	
+	hidden: false,
+	visibilityState: 'visible',
+	
 	events: {},
 	
 	createElement: function( name ) {
